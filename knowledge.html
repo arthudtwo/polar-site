@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn - Polar Knowledge Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div id="leaf-background">
+        <i class="fas fa-leaf bg-leaf bg-pos-left-1"></i>
+        <i class="fas fa-leaf bg-leaf bg-pos-left-2"></i>
+        <i class="fas fa-leaf bg-leaf bg-pos-right-1"></i>
+        <i class="fas fa-leaf bg-leaf bg-pos-right-2"></i>
+    </div>
+
+    <nav>
+        <div class="logo">
+            <i class="fas fa-solar-panel"></i> 
+            <span>Polar</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">
+                <i class="fas fa-home"></i> <span>Home</span>
+            </a>
+            <a href="knowledge.html" class="active">
+                <i class="fas fa-book-open"></i> <span>Learn</span>
+            </a>
+            <a href="assessment.html">
+                <i class="fas fa-play-circle"></i> <span>Get Started</span>
+            </a>
+            <a href="dashboard.html">
+                <i class="fas fa-user-circle"></i> <span>My Status</span>
+            </a>
+        </div>
+        <div class="nav-spacer"></div>
+    </nav>
+
+    <header class="hero" style="padding: 4rem 2rem; margin-bottom: 0;">
+        <div class="container">
+            <h1>Knowledge Hub</h1>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 3rem;">
+
+        <h2 class="section-title">Poland's Energy Statistics for 2026</h2>
+        
+        <div class="stats-grid" id="stats-trigger">
+            
+            <div class="stat-card">
+                <div class="stat-label">Energy from Coal</div>
+                <div class="stat-number" data-target="52">0</div><span style="font-size:2rem; color:var(--polar-cyan); font-weight:700;">%</span>
+                <p class="stat-desc">Coal share fell to 52.2% in 2025. In April, it dropped below 50% for the first time in history.<br>
+                <span style="font-size:0.8rem; color:#6b7280;">Source: <a href="https://www.energy-charts.info/charts/energy_pie/chart.htm?l=en&c=PL&interval=year&year=2025" target="_blank" style="color:var(--polar-cyan); text-decoration: underline;">Fraunhofer ISE</a></span>
+                </p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Renewable Share</div>
+                <div class="stat-number" data-target="30">0</div><span style="font-size:2rem; color:var(--polar-cyan); font-weight:700;">%</span>
+                <p class="stat-desc">Renewables provided ~30% of power in 2025. In June, green energy overtook coal generation for the first time ever.<br>
+                <span style="font-size:0.8rem; color:#6b7280;">Source: <a href="https://ember-climate.org/countries-and-regions/countries/poland/" target="_blank" style="color:var(--polar-cyan); text-decoration: underline;">Ember Climate</a></span>
+                </p>
+            </div>
+
+            <div class="stat-card" style="grid-column: span 1; min-width: 300px;">
+                <div class="stat-label">2026 Energy Snapshot </div>
+                <div class="chart-container">
+                    <div class="chart-row">
+                        <div class="chart-label"><span>Coal (Hard & Lignite)</span> <span>52%</span></div>
+                        <div class="chart-bar-bg"><div class="chart-bar-fill fill-coal" data-width="52%"></div></div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="chart-label"><span>Renewables (Wind & Solar)</span> <span>30%</span></div>
+                        <div class="chart-bar-bg"><div class="chart-bar-fill fill-renew" data-width="30%"></div></div>
+                    </div>
+                     <div class="chart-row">
+                        <div class="chart-label"><span>Gas & Other</span> <span>18%</span></div>
+                        <div class="chart-bar-bg"><div class="chart-bar-fill fill-wind" style="background-color: var(--polar-blue);" data-width="18%"></div></div>
+                    </div>
+                </div>
+                <p class="stat-desc" style="margin-top:1rem; font-size: 0.8rem;">
+                    Verified Data Sources: 
+                    <a href="https://www.energy-charts.info/charts/energy_pie/chart.htm?l=en&c=PL&interval=year&year=2025" target="_blank" style="color:var(--polar-cyan); text-decoration: underline;">Fraunhofer ISE</a>
+                </p>
+            </div>
+        </div>
+
+        <h2 class="section-title">Important Laws & Subsidies</h2>
+        <div class="info-section">
+            
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>New: Energy Deregulation Act (Jan 2026)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p><strong>Effective Jan 1, 2026:</strong> A major reform has simplified energy billing and communication.<br><br>
+                        - <strong>Simplified Bills:</strong> Energy bills now only show 3 figures.<br>
+                        - <strong>Easier Registration:</strong> RES installations under 5 MW use a simple registry.<br><br>
+                        <span style="font-size:0.8rem; color:#6b7280;">Source: <a href="https://accace.com/deregulation-in-the-energy-sector-in-poland/" target="_blank" style="color:var(--polar-cyan); text-decoration: underline;">Ministry of Climate</a></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Mój Prąd 6.0 (My Electricity)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p><strong>Status:</strong> Processing applications in 2026.<br><br>
+                        Offers up to <strong>28,000 PLN</strong> in subsidies. Installations connected after Aug 2024 <strong>must</strong> include energy storage.<br><br>
+                        <a href="https://mojprad.gov.pl/" target="_blank" style="color:var(--polar-cyan); text-decoration: underline;">Official Website <i class="fas fa-external-link-alt"></i></a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    <span>Czyste Powietrze (Clean Air Program)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p><strong>Status:</strong> Active (2025/26 Thresholds).<br><br>
+                        Receive up to <strong>135,000 PLN</strong> for comprehensive thermal modernization (PV + Heat Pump + Insulation).<br><br>
+                        <a href="https://czystepowietrze.gov.pl/" target="_blank" style="color:var(--polar-cyan); text-decoration: underline;">Official Website <i class="fas fa-external-link-alt"></i></a></p>
+                    </div>
+                </div>
+            </div>
+
+             <div class="accordion">
+                <button class="accordion-header">
+                    <span>Hourly Dynamic Tariffs</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p>Poland has fully transitioned to hourly dynamic tariffs. You sell surplus energy at the market price for that specific hour, making batteries highly profitable.<br><br>
+                        <span style="font-size:0.8rem; color:#6b7280;">Source: <a href="https://www.ure.gov.pl/" target="_blank" style="color:var(--polar-cyan); text-decoration: underline;">Energy Regulatory Office</a></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion" id="location-guide">
+                <button class="accordion-header">
+                    <span>How to Enable Location Access</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p>To use our automatic grant finder, you need to allow location access in your browser settings. Here is how:</p>
+                        
+                        <div style="margin-top: 1rem; background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px;">
+                            <h4 style="color: var(--polar-cyan); margin-bottom: 0.5rem;"><i class="fab fa-chrome"></i> Google Chrome Settings</h4>
+                            <ol style="margin-left: 1.5rem; color: #d1d5db; margin-bottom: 1rem;">
+                                <li>Click the <strong>Settings</strong> icon or go to <code>chrome://settings/content/location</code>.</li>
+                                <li>Select <strong>"Sites can ask for your location"</strong>.</li>
+                                <li>Reload the page to trigger the prompt again.</li>
+                            </ol>
+                            
+                            <img src="assets/location.webp" alt="Chrome Location Settings" style="width: 100%; max-width: 600px; border-radius: 8px; margin-top: 0.5rem; border: 1px solid #374151; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2 class="section-title">Application Form Guide</h2>
+        <div class="info-section">
+            
+            <p style="text-align: center; color: #9ca3af; margin-bottom: 2rem;">
+                Confused by the technical terms? Here is a breakdown of the ENEA application fields.
+            </p>
+
+            <div class="accordion" id="guide-ppe">
+                <button class="accordion-header">
+                    <span>What is a "PPE" Code?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p><strong>PPE (Punkt Poboru Energii)</strong> is your unique electricity meter identification number. 
+                        <br><br>
+                        It is required in <strong>Section 6</strong> of the ENEA form[cite: 73]. You can find it on your electricity bill, it usually starts with <strong>"590..."</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion" id="guide-phase">
+                <button class="accordion-header">
+                    <span>1-Phase vs 3-Phase Connection</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p>In <strong>Section 6</strong>, you must specify your connection type[cite: 75].
+                        <br><br>
+                        - <strong>1-Phase (Jednofazowa):</strong> Typically for older apartments or small loads (under 3-5 kW).<br>
+                        - <strong>3-Phase (Trójfazowa):</strong> Standard for modern homes and required for installations above 3.68 kW.
+                        <br><br>
+                        <em> If you selected a 10kW system, you almost certainly have a 3-Phase connection.</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion" id="guide-power">
+                <button class="accordion-header">
+                    <span>System Power (Moc Znamionowa)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p>This refers to <strong>Section 5</strong> of the form "Łączna moc zainstalowana" [cite: 64-65].
+                        <br><br>
+                        - <strong>Microinstallation:</strong> Any system up to 50 kW.<br>
+                        - <strong>Request vs Notification:</strong> If your new solar power exceeds your current "Connection Power" (Moc Przyłączeniowa), you need to file a "Request for Conditions" [cite: 5] instead of a simple notification[cite: 4].
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion" id="guide-prosumer">
+                <button class="accordion-header">
+                    <span>Household vs Business (Prosumer)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p>This determines your status in <strong>Section 10</strong>[cite: 103].
+                        <br><br>
+                        - <strong>Household:</strong> You are a "Consumer-Prosumer". You use energy for living needs. VAT is often lower (8%).<br>
+                        - <strong>Business:</strong> You use energy for commercial activity. You are a "Business-Prosumer".
+                        <br><br>
+                        Checking "Household" automatically fills the "I am a Prosumer" declaration in Section 7 [cite: 78-79].
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <h2 class="section-title">Fire Safety & Resources</h2>
+        <div class="info-section">
+            
+            <p style="text-align: center; color: #9ca3af; margin-bottom: 2rem;">
+                Essential documents and safety regulations for larger installations.
+            </p>
+
+            <div class="accordion" id="guide-fire">
+                <button class="accordion-header">
+                    <span>When is a Fire Safety Notice Required?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p>According to Polish Building Law (Art. 29 ust. 4 pkt 3c) [cite: 219-220], any photovoltaic installation exceeding <strong>6.5 kW</strong> in capacity requires:
+                        <br><br>
+                        1. <strong>Expert Agreement:</strong> The design must be agreed upon with a Certified Fire Safety Expert (Rzeczoznawca ds. zabezpieczeń ppoż)[cite: 242].<br>
+                        2. <strong>PSP Notification:</strong> A formal notice must be sent to the State Fire Service (Państwowa Straż Pożarna) [cite: 217-218].
+                        <br><br>
+                        <em><strong>Polar Users:</strong> If you select a 10 kW system, we automatically flag your application for this expert review process. 5 kW systems are exempt.</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion" id="downloads">
+                <button class="accordion-header">
+                    <span><i class="fas fa-download" style="color:var(--polar-cyan); margin-right:10px;"></i> Download Blank Forms</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p style="margin-bottom: 1.5rem;">For transparency, we provide the official blank templates we use to generate your application.</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <a href="assets/wniosek-enea.pdf" download style="text-decoration: none;">
+                                <div style="background: rgba(255,255,255,0.05); border: 1px solid #374151; padding: 1rem; border-radius: 8px; text-align: center; transition: all 0.3s; height: 100%;">
+                                    <i class="fas fa-file-pdf" style="font-size: 2rem; color: #ef4444; margin-bottom: 0.5rem;"></i>
+                                    <div style="color: white; font-weight: bold;">ENEA Application</div>
+                                    <div style="color: #9ca3af; font-size: 0.8rem;">Official Grid Connection Form</div>
+                                </div>
+                            </a>
+
+                            <a href="assets/Zgloszenie-instalacji_fotowoltaicznej_KMPSP_Zielona_Góra.pdf" download style="text-decoration: none;">
+                                <div style="background: rgba(255,255,255,0.05); border: 1px solid #374151; padding: 1rem; border-radius: 8px; text-align: center; transition: all 0.3s; height: 100%;">
+                                    <i class="fas fa-fire-extinguisher" style="font-size: 2rem; color: #f59e0b; margin-bottom: 0.5rem;"></i>
+                                    <div style="color: white; font-weight: bold;">Fire Notice (PSP)</div>
+                                    <div style="color: #9ca3af; font-size: 0.8rem;">Required for >6.5 kW</div>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <h2 class="section-title">Equipment & Technology Standards</h2>
+        <div class="info-section">
+            
+            <p style="text-align: center; color: #9ca3af; margin-bottom: 2rem;">
+                We only recommend components that meet strict 2025/2026 reliability standards.
+            </p>
+
+            <div class="accordion" id="guide-panels">
+                <button class="accordion-header">
+                    <span>Top Rated Solar Panels (Tier 1)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p><strong>What is "Tier 1"?</strong><br>
+                        This is a financial ranking by BloombergNEF indicating a manufacturer is "bankable" and financially stable. It is the safest choice for long-term warranties.
+                        </p>
+                        
+                        <div style="margin-top: 1rem;">
+                            <strong style="color:var(--polar-cyan);">Recommended Brands (2025):</strong>
+                            <ul style="margin-top:0.5rem; list-style-type: none; padding-left: 0;">
+                                <li style="margin-bottom: 8px; border-bottom: 1px solid #374151; padding-bottom: 8px;">
+                                    <strong style="color:white;">Jinko Solar (Tiger Neo)</strong><br>
+                                    <span style="color:#9ca3af; font-size:0.9rem;">Leading N-Type TOPCon technology. High efficiency (22.5%+) and excellent low-light performance.</span>
+                                </li>
+                                <li style="margin-bottom: 8px; border-bottom: 1px solid #374151; padding-bottom: 8px;">
+                                    <strong style="color:white;">Trina Solar (Vertex S+)</strong><br>
+                                    <span style="color:#9ca3af; font-size:0.9rem;">Double-glass design makes them highly fire-resistant and durable. Standard for home rooftops.</span>
+                                </li>
+                                <li style="margin-bottom: 8px;">
+                                    <strong style="color:white;">Longi Solar (Hi-MO 6)</strong><br>
+                                    <span style="color:#9ca3af; font-size:0.9rem;">HPBC technology offering superior aesthetics (all black) and high reliability.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion" id="guide-inverters">
+                <button class="accordion-header">
+                    <span>Inverter Technology Comparison</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p>The inverter is the "brain" of your system. We compare the top choices in Poland.</p>
+                        
+                        <table style="width:100%; border-collapse: collapse; margin-top: 1rem; color: #d1d5db; font-size: 0.9rem;">
+                            <thead>
+                                <tr style="border-bottom: 1px solid #374151;">
+                                    <th style="text-align:left; padding: 8px; color:var(--polar-cyan);">Brand</th>
+                                    <th style="text-align:left; padding: 8px; color:var(--polar-cyan);">Type</th>
+                                    <th style="text-align:left; padding: 8px; color:var(--polar-cyan);">Best For...</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                    <td style="padding: 8px;"><strong>Huawei</strong><br><span style="font-size:0.8rem; color:#6b7280;">(Sun2000)</span></td>
+                                    <td style="padding: 8px;">String + Optimizer</td>
+                                    <td style="padding: 8px;">Reliability & Battery Readiness. #1 choice in Poland.</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                    <td style="padding: 8px;"><strong>Fronius</strong><br><span style="font-size:0.8rem; color:#6b7280;">(Gen24)</span></td>
+                                    <td style="padding: 8px;">String Hybrid</td>
+                                    <td style="padding: 8px;">Premium European quality. Built-in backup power features.</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px;"><strong>SolarEdge</strong></td>
+                                    <td style="padding: 8px;">Micro-Optimized</td>
+                                    <td style="padding: 8px;">Complex roofs with shade. Maximizes output per panel.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion" id="guide-verify">
+                <button class="accordion-header">
+                    <span>Verify Our Data (External Sources)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p>Don't just take our word for it. Check the independent reports:</p>
+                        <ul style="margin-top: 0.5rem; color: #9ca3af;">
+                            <li><a href="https://modulescorecard.pvel.com/" target="_blank" style="color:var(--polar-cyan); text-decoration: underline;">PVEL Reliability Scorecard</a> (Technical Testing)</li>
+                            <li><a href="https://ieo.pl/en/" target="_blank" style="color:var(--polar-cyan); text-decoration: underline;">Institute for Renewable Energy (IEO)</a> (Market Reports)</li>
+                            <li><a href="https://about.bnef.com/" target="_blank" style="color:var(--polar-cyan); text-decoration: underline;">BloombergNEF</a> (Tier 1 Financial Ranking)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <h3>Knowledge is power.</h3>
+            <p>Now that you know the facts, see if your home qualifies.</p>
+            <a href="assessment.html" class="btn btn-primary" style="margin-top:1rem;">Check Eligibility</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Polar. Innovation Challenge PoC.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            const accordions = document.querySelectorAll('.accordion-header');
+            accordions.forEach(acc => {
+                acc.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const body = this.nextElementSibling;
+                    if (body.style.maxHeight) body.style.maxHeight = null;
+                    else body.style.maxHeight = body.scrollHeight + "px";
+                });
+            });
+
+            if (window.location.hash === '#location-guide') {
+                const target = document.getElementById('location-guide');
+                if (target) {
+                    const header = target.querySelector('.accordion-header');
+                    const body = target.querySelector('.accordion-body');
+                    
+                    // Add active class and set max-height to open it
+                    header.classList.add('active');
+                    body.style.maxHeight = body.scrollHeight + "px";
+                    
+                    // Scroll to it smoothly
+                    setTimeout(() => {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
+                }
+            }
+
+            const statsSection = document.getElementById('stats-trigger');
+            
+            const animateStats = () => {
+                const counters = document.querySelectorAll('.stat-number');
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 2000; 
+                    const increment = target / (duration / 16); 
+                    
+                    let current = 0;
+                    const updateCounter = () => {
+                        current += increment;
+                        if (current < target) {
+                            counter.innerText = Math.ceil(current);
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCounter();
+                });
+
+                const bars = document.querySelectorAll('.chart-bar-fill');
+                bars.forEach(bar => {
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width; 
+                });
+            };
+
+            if (statsSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            if (!statsSection.classList.contains('animated')) {
+                                animateStats();
+                                statsSection.classList.add('animated');
+                            }
+                            document.body.classList.add('leaves-active');
+                        } else {
+                            document.body.classList.remove('leaves-active');
+                        }
+                    });
+                }, { threshold: 0.4 }); 
+                observer.observe(statsSection);
+            }
+        });
+        
+    </script>
+</body>
+</html>

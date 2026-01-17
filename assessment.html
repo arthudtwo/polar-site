@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polar Assessment - ENEA Application</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* --- Language Switcher --- */
+        .lang-switch { display: flex; gap: 5px; font-size: 0.9rem; font-weight: bold; justify-content: flex-end; }
+        .lang-btn { cursor: pointer; padding: 4px 8px; border-radius: 4px; color: #9ca3af; transition: all 0.3s; }
+        .lang-btn.active { color: #000; background-color: #22d3ee; } /* Cyan */
+        
+        /* --- Form Container (Dark Theme) --- */
+        .form-container { 
+            background: #1f2937; /* Dark Gray Card */
+            max-width: 800px; 
+            margin: 2rem auto; 
+            padding: 2rem; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            border: 1px solid #374151;
+            position: relative; 
+            z-index: 2; 
+            color: #f9fafb; /* White Text */
+        }
+
+        /* --- Step Indicator --- */
+        .step-indicator { display: flex; justify-content: space-between; margin-bottom: 2rem; position: relative; }
+        .step-indicator::before { content: ''; position: absolute; top: 15px; left: 0; width: 100%; height: 3px; background: #374151; z-index: 0; }
+        
+        /* Progress Line: Gradient Mint to Blue */
+        .step-bg { position: absolute; top: 15px; left: 0; height: 3px; background: linear-gradient(90deg, #6ee7b7, #0ea5e9); z-index: 1; transition: width 0.4s ease; width: 0%; }
+        
+        .step { 
+            position: relative; z-index: 2; 
+            background: #111827; /* Dark Body BG */
+            width: 35px; height: 35px; 
+            border-radius: 50%; 
+            border: 3px solid #374151; 
+            display: flex; align-items: center; justify-content: center; 
+            font-weight: bold; color: #9ca3af; 
+            transition: all 0.4s ease; font-size: 0.9rem; 
+        }
+        
+        /* Active Steps: Cyan Border/BG */
+        .step.active { border-color: #22d3ee; background: #22d3ee; color: #000; }
+        .step.completed { border-color: #22d3ee; background: #22d3ee; color: #000; }
+        
+        .form-step { display: none; animation: fadeIn 0.5s; }
+        .form-step.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Inputs & Labels --- */
+        .form-group { margin-bottom: 1.5rem; }
+        .form-label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: #e5e7eb; } /* Light Gray Label */
+        
+        .form-input, select { 
+            width: 100%; 
+            padding: 0.8rem; 
+            background-color: #111827; /* Very Dark Input BG */
+            border: 1px solid #4b5563; 
+            border-radius: 8px; 
+            font-size: 1rem; 
+            color: #fff; /* White Text Input */
+            transition: border 0.3s;
+        }
+        .form-input:focus, select:focus {
+            outline: none;
+            border-color: #22d3ee; /* Cyan Focus */
+        }
+
+        .form-actions { display: flex; justify-content: space-between; margin-top: 2rem; border-top: 1px solid #374151; padding-top: 2rem; }
+
+        /* --- Power Selection Cards --- */
+        .power-card-container { display: flex; gap: 1rem; }
+        .power-card {
+            flex: 1;
+            background: #111827;
+            border: 2px solid #374151;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .power-card:hover { border-color: #22d3ee; transform: translateY(-3px); }
+        .power-card.selected { border-color: #22d3ee; background-color: rgba(34, 211, 238, 0.1); box-shadow: 0 0 15px rgba(34, 211, 238, 0.1); }
+        .power-card h3 { font-size: 2rem; margin-bottom: 0.5rem; color: #f9fafb; }
+        .power-card p { color: #9ca3af; font-size: 0.9rem; }
+        .power-card i { font-size: 3rem; margin-bottom: 1rem; color: #22d3ee; display: block; } 
+        
+        /* --- Checkbox/Radio Box --- */
+        .radio-box {
+            display: block;
+            padding: 1rem;
+            background: #111827;
+            border: 2px solid #374151;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            color: #e5e7eb;
+            transition: border 0.3s;
+        }
+        .radio-box input { margin-right: 10px; accent-color: #22d3ee; }
+        .radio-box:hover { border-color: #22d3ee; }
+        .radio-box strong { color: white; }
+
+        /* Consent Box */
+        .consent-box {
+            background: rgba(34, 211, 238, 0.05);
+            border: 1px solid #374151;
+            padding: 1.5rem;
+            border-radius: 8px;
+            color: #d1d5db;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        .consent-box ul { margin-left: 20px; margin-top: 10px; }
+        .consent-box li { margin-bottom: 5px; }
+
+        /* Review Section */
+        .review-box {
+            background: #111827; 
+            padding: 1.5rem; 
+            border-radius: 8px; 
+            margin-bottom: 1rem;
+            border: 1px solid #374151;
+            color: #d1d5db;
+        }
+        .review-box strong { color: #22d3ee; }
+
+        .nav-spacer { width: 200px; display: flex; justify-content: flex-end; }
+    </style>
+</head>
+<body>
+
+    <div id="leaf-background">
+        <i class="fas fa-leaf bg-leaf bg-pos-left-1"></i>
+        <i class="fas fa-leaf bg-leaf bg-pos-left-2"></i>
+        <i class="fas fa-leaf bg-leaf bg-pos-right-1"></i>
+        <i class="fas fa-leaf bg-leaf bg-pos-right-2"></i>
+    </div>
+
+    <nav>
+        <div class="logo">
+            <i class="fas fa-solar-panel"></i> 
+            <span>Polar</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">
+                <i class="fas fa-home"></i> <span>Home</span>
+            </a>
+            <a href="knowledge.html">
+                <i class="fas fa-book-open"></i> <span>Learn</span>
+            </a>
+            <a href="assessment.html" class="active">
+                <i class="fas fa-play-circle"></i> <span>Get Started</span>
+            </a>
+            <a href="dashboard.html">
+                <i class="fas fa-user-circle"></i> <span>My Status</span>
+            </a>
+        </div>
+        <div class="nav-spacer">
+            <div class="lang-switch">
+                <span class="lang-btn" data-lang="pl" onclick="setLanguage('pl')">🇵🇱 PL</span>
+                <span style="color:#555;">|</span>
+                <span class="lang-btn active" data-lang="en" onclick="setLanguage('en')">🇬🇧 EN</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="form-container">
+            <h2 style="text-align: center; margin-bottom: 1.5rem; color:white;" data-i18n="assess.title">Application Wizard</h2>
+            
+            <div class="step-indicator">
+                <div class="step-bg" id="progress-line"></div>
+                <div class="step active" id="step-dot-1">1</div>
+                <div class="step" id="step-dot-2">2</div>
+                <div class="step" id="step-dot-3">3</div>
+                <div class="step" id="step-dot-4">4</div>
+                <div class="step" id="step-dot-5">5</div>
+                <div class="step" id="step-dot-6">6</div>
+            </div>
+
+            <form id="solar-form" onsubmit="return false;">
+                
+                <div class="form-step active" id="step-1">
+                    <h3 style="color:#22d3ee; margin-bottom: 1rem;">1. Terms & Data Consent</h3>
+                    
+                    <div class="consent-box">
+                        <p>To generate your ENEA application and check fire safety compliance, we need to process your personal data. By continuing, you acknowledge that:</p>
+                        <ul>
+                            <li>Your data will be used to fill the <strong>ENEA Operator</strong> application form.</li>
+                            <li>If required (>6.5kW), technical data will be shared with a certified <strong>Fire Safety Expert</strong>.</li>
+                            <li>Polar acts as a technological processor; we do not sell your data to unauthorized third parties.</li>
+                        </ul>
+                    </div>
+
+                    <label class="radio-box" style="display: flex; align-items: flex-start; gap: 10px;">
+                        <input type="checkbox" id="terms_agree" style="margin-top: 5px;">
+                        <div>
+                            <strong>I agree to the Terms of Service & Privacy Policy</strong>
+                            <p style="font-size: 0.85rem; color: #9ca3af; margin-top: 5px;">I consent to the processing of my data for the purpose of grid connection application.</p>
+                        </div>
+                    </label>
+                    <div id="terms-error" style="color:#ef4444; margin-top:10px; display:none;">You must agree to the terms to proceed.</div>
+                </div>
+
+                <div class="form-step" id="step-2">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <h3 style="color:#22d3ee;">2. System Power Selection</h3>
+                        <a href="knowledge.html#guide-power" target="_blank" style="color:#22d3ee; font-size:1.2rem;" title="Read Guide"><i class="far fa-question-circle"></i></a>
+                    </div>
+                    <p style="margin-bottom: 1.5rem; color:#9ca3af;">Choose the capacity you wish to install. This determines your application type (Page 2 of ENEA form).</p>
+                    
+                    <input type="hidden" id="system_capacity" name="system_capacity">
+                    
+                    <div class="power-card-container">
+                        <div class="power-card" onclick="selectPower('5')" id="card-5kw">
+                            <i class="fas fa-home"></i>
+                            <h3>5 kW</h3>
+                            <p>Standard Home (Single/Three Phase)</p>
+                        </div>
+                        <div class="power-card" onclick="selectPower('10')" id="card-10kw">
+                            <i class="fas fa-building"></i>
+                            <h3>10 kW</h3>
+                            <p>Large Home/Biz (Three Phase Only)</p>
+                        </div>
+                    </div>
+                    <div id="capacity-error" style="color:#ef4444; margin-top:10px; display:none;">Please select a system size.</div>
+                </div>
+
+                <div class="form-step" id="step-3">
+                    <h3 style="color:#22d3ee;">3. Applicant Details</h3>
+                    <p style="margin-bottom: 1.5rem; color:#9ca3af;">Data for Section 1 & 4 of the ENEA application.</p>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Full Name / Entity Name</label>
+                        <input type="text" class="form-input" id="fullname" placeholder="Jan Kowalski">
+                    </div>
+
+                    <div class="grid-2" style="margin: 0; gap: 1rem;">
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone</label>
+                            <input type="tel" class="form-input" id="phone">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Installation Address</label>
+                        <input type="text" class="form-input" id="address" placeholder="Street, Number, Zip, City">
+                        
+                        <div id="location-check" style="display:none; margin-top: 1rem; background: rgba(34, 211, 238, 0.1); border: 1px solid var(--polar-cyan); padding: 1rem; border-radius: 8px;">
+                            <div style="display:flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-check-circle" style="color: var(--polar-cyan); font-size: 1.5rem;"></i>
+                                <div>
+                                    <strong style="color: white; display:block;">Location Verified</strong>
+                                    <span style="color: #9ca3af; font-size: 0.9rem;">Great news! This area qualifies for the <strong style="color:var(--polar-mint)">Mój Prąd 6.0</strong> subsidy.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step" id="step-4">
+                    <h3 style="color:#22d3ee;">4. Grid Connection Status</h3>
+                    <p style="margin-bottom: 1.5rem; color:#9ca3af;">We need this to identify your meter (Section 6 of ENEA form).</p>
+
+                    <div class="form-group">
+                        <div style="display:flex; justify-content:space-between;">
+                            <label class="form-label">PPE Code (Point of Consumption)</label>
+                            <a href="knowledge.html#guide-ppe" target="_blank" style="color:#22d3ee; font-size:0.9rem;" title="What is this?"><i class="fas fa-info-circle"></i> Help</a>
+                        </div>
+                        <small style="color:#9ca3af; display:block; margin-bottom:5px;">Found on your electricity bill (e.g., 590...)</small>
+                        <input type="text" class="form-input" id="ppe_code" placeholder="590000000000000000">
+                    </div>
+
+                    <div class="form-group">
+                        <div style="display:flex; justify-content:space-between;">
+                            <label class="form-label">Current Phase Connection</label>
+                            <a href="knowledge.html#guide-phase" target="_blank" style="color:#22d3ee; font-size:0.9rem;"><i class="fas fa-info-circle"></i> Guide</a>
+                        </div>
+                        <select class="form-input" id="phase_type">
+                            <option value="">Select Phase...</option>
+                            <option value="1">1-Phase (Jednofazowa)</option>
+                            <option value="3">3-Phase (Trójfazowa)</option>
+                        </select>
+                        <div id="phase-warning" style="display:none; color:#f59e0b; margin-top:5px; font-size:0.9rem;">
+                            <i class="fas fa-exclamation-triangle"></i> Note: 10kW systems usually require 3-Phase.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step" id="step-5">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <h3 style="color:#22d3ee;">5. Usage Profile</h3>
+                        <a href="knowledge.html#guide-prosumer" target="_blank" style="color:#22d3ee; font-size:1.2rem;" title="Prosumer Info"><i class="far fa-question-circle"></i></a>
+                    </div>
+                    <p style="margin-bottom: 1.5rem; color:#9ca3af;">How will you use the energy? (Section 10 of ENEA form)</p>
+
+                    <label class="radio-box">
+                        <input type="radio" name="usage_type" value="household" checked onclick="updateProsumerText('household')">
+                        <strong>Household Needs</strong> (Gospodarstwo domowe)
+                    </label>
+
+                    <label class="radio-box">
+                        <input type="radio" name="usage_type" value="business" onclick="updateProsumerText('business')">
+                        <strong>Business Activity</strong> (Działalność gospodarcza)
+                    </label>
+
+                    <div style="background-color: rgba(6, 182, 212, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem; border: 1px solid #06b6d4;">
+                        <i class="fas fa-check-circle" style="color: #22d3ee;"></i>
+                        <strong style="color: #22d3ee;" id="prosumer-title">Consumer Prosumer:</strong> 
+                        <span style="color:#ccc" id="prosumer-desc">We will mark Section 7 as "Prosumer" and Section 10 as "Household". VAT is typically 8%.</span>
+                    </div>
+                </div>
+
+                <div class="form-step" id="step-6">
+                    <h3 style="color:#22d3ee;">6. Final Review</h3>
+                    <p style="margin-bottom: 1.5rem; color:#9ca3af;">We are ready to generate your application bundle.</p>
+
+                    <div class="review-box">
+                        <p><strong>System:</strong> <span id="review-power">-</span> kW</p>
+                        <p><strong>Applicant:</strong> <span id="review-name">-</span></p>
+                        <p><strong>PPE Code:</strong> <span id="review-ppe">-</span></p>
+                        <p><strong>Type:</strong> <span id="review-type">-</span></p>
+                    </div>
+
+                    <div style="background: rgba(34, 211, 238, 0.05); padding: 1rem; border-radius: 8px; border: 1px solid rgba(34, 211, 238, 0.3); margin-top: 1rem;">
+                        <h4 style="color:var(--polar-cyan); margin-bottom: 0.5rem;"><i class="fas fa-magic"></i> What happens next?</h4>
+                        <ul style="color: #9ca3af; font-size: 0.9rem; list-style: none; padding: 0;">
+                            <li style="margin-bottom: 5px;"><i class="fas fa-check" style="color:var(--polar-mint); margin-right:8px;"></i> We generate the <strong>ENEA Application PDF</strong>.</li>
+                            <li style="margin-bottom: 5px;"><i class="fas fa-check" style="color:var(--polar-mint); margin-right:8px;"></i> It is <strong>not required</strong> that you notify the fire department as you are below 6.5 Kw.</li>
+                            <li><i class="fas fa-arrow-right" style="color:var(--polar-cyan); margin-right:8px;"></i> You will be redirected to provide <strong>Electrical Schematics</strong>.</li>
+                            <li><i class="fas fa-arrow-right" style="color:var(--polar-cyan); margin-right:8px;"></i> You will be redirected to your <strong>Dashboard</strong> to digitally sign and submit.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="btn-prev" onclick="changeStep(-1)" disabled>Back</button>
+                    
+                    <div style="display:flex; gap:10px;">
+                        <button type="button" class="btn" style="color:#9ca3af;" onclick="saveAndExit()">Save & Quit</button>
+                        <button type="button" class="btn btn-primary" id="btn-next" onclick="changeStep(1)">Next Step</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="translations.js"></script>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 6; // Updated to 6
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadSavedData();
+            updateUI();
+            
+            const savedLang = localStorage.getItem('polar_lang') || 'en';
+            if(typeof setLanguage === "function") setLanguage(savedLang);
+
+            // FAKE LOCATION CHECKER LOGIC
+            const addressInput = document.getElementById('address');
+            const locationBox = document.getElementById('location-check');
+            let timeout = null;
+
+            if(addressInput && locationBox) {
+                addressInput.addEventListener('input', () => {
+                    locationBox.style.display = 'none';
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => {
+                        if(addressInput.value.length > 5) {
+                            locationBox.style.display = 'block';
+                            locationBox.style.animation = 'fadeIn 0.5s';
+                        }
+                    }, 800);
+                });
+            }
+        });
+
+        function selectPower(kw) {
+            document.getElementById('system_capacity').value = kw;
+            document.querySelectorAll('.power-card').forEach(c => c.classList.remove('selected'));
+            document.getElementById('card-' + kw + 'kw').classList.add('selected');
+            document.getElementById('capacity-error').style.display = 'none';
+        }
+
+        function updateProsumerText(type) {
+            const title = document.getElementById('prosumer-title');
+            const desc = document.getElementById('prosumer-desc');
+
+            if (type === 'household') {
+                title.innerText = "Consumer Prosumer:";
+                desc.innerText = "We will mark Section 7 as 'Prosumer' and Section 10 as 'Household'. VAT is typically 8%.";
+            } else {
+                title.innerText = "Business Prosumer:";
+                desc.innerText = "We will mark Section 7 as 'Prosumer' and Section 10 as 'Business Activity'. VAT is typically 23%.";
+            }
+        }
+
+        function changeStep(direction) {
+            // Validation Step 1: Consent
+            if (direction === 1 && currentStep === 1) {
+                const terms = document.getElementById('terms_agree');
+                if (!terms.checked) {
+                    document.getElementById('terms-error').style.display = 'block';
+                    return;
+                } else {
+                    document.getElementById('terms-error').style.display = 'none';
+                }
+            }
+
+            // Validation Step 2: Capacity
+            if (direction === 1 && currentStep === 2) {
+                if (!document.getElementById('system_capacity').value) {
+                    document.getElementById('capacity-error').style.display = 'block';
+                    return;
+                }
+            }
+            // Validation Step 3: Name
+            if (direction === 1 && currentStep === 3) {
+                 if (!document.getElementById('fullname').value) {
+                    alert("Name is required"); return;
+                 }
+            }
+
+            saveToLocalStorage();
+            currentStep += direction;
+
+            // Prepare Review Data on Step 6
+            if (currentStep === 6) {
+                document.getElementById('review-power').innerText = document.getElementById('system_capacity').value;
+                document.getElementById('review-name').innerText = document.getElementById('fullname').value;
+                document.getElementById('review-ppe').innerText = document.getElementById('ppe_code').value;
+                const type = document.querySelector('input[name="usage_type"]:checked').value;
+                document.getElementById('review-type').innerText = (type === 'household') ? "Household (Prosumer)" : "Business";
+            }
+
+            if (currentStep > totalSteps) { submitForm(); return; }
+            updateUI();
+        }
+
+        function updateUI() {
+            document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
+            document.getElementById(`step-${currentStep}`).classList.add('active');
+
+            const progressPercentage = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            document.getElementById('progress-line').style.width = progressPercentage + '%';
+
+            for (let i = 1; i <= totalSteps; i++) {
+                const dot = document.getElementById(`step-dot-${i}`);
+                if (i < currentStep) {
+                    dot.className = "step completed"; dot.innerHTML = "✓";
+                } else if (i === currentStep) {
+                    dot.className = "step active"; dot.innerHTML = i;
+                } else {
+                    dot.className = "step"; dot.innerHTML = i;
+                }
+            }
+
+            const prevBtn = document.getElementById('btn-prev');
+            if (currentStep === 1) prevBtn.style.visibility = 'hidden';
+            else { prevBtn.style.visibility = 'visible'; prevBtn.disabled = false; }
+
+            const nextBtn = document.getElementById('btn-next');
+            nextBtn.innerText = (currentStep === totalSteps) ? "Generate Bundle" : "Next Step";
+            
+            // Phase Warning Logic
+            const cap = document.getElementById('system_capacity').value;
+            const phase = document.getElementById('phase_type').value;
+            const warn = document.getElementById('phase-warning');
+            if(cap === '10' && phase === '1') warn.style.display = 'block';
+            else warn.style.display = 'none';
+        }
+
+        function saveToLocalStorage() {
+            const formData = {
+                terms: document.getElementById('terms_agree').checked,
+                capacity: document.getElementById('system_capacity').value,
+                fullname: document.getElementById('fullname').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                ppe: document.getElementById('ppe_code').value,
+                phase: document.getElementById('phase_type').value,
+                usage: document.querySelector('input[name="usage_type"]:checked')?.value,
+                last_step: currentStep
+            };
+            localStorage.setItem('ecopol_form_data', JSON.stringify(formData));
+            localStorage.setItem('application_status', 'in_progress_step_' + currentStep);
+        }
+
+        function loadSavedData() {
+            const saved = localStorage.getItem('ecopol_form_data');
+            if (saved) {
+                const data = JSON.parse(saved);
+                if(data.terms) document.getElementById('terms_agree').checked = true;
+                if(data.capacity) selectPower(data.capacity);
+                if(data.fullname) document.getElementById('fullname').value = data.fullname;
+                if(data.email) document.getElementById('email').value = data.email;
+                if(data.phone) document.getElementById('phone').value = data.phone;
+                if(data.address) document.getElementById('address').value = data.address;
+                if(data.ppe) document.getElementById('ppe_code').value = data.ppe;
+                if(data.phase) document.getElementById('phase_type').value = data.phase;
+                if(data.usage) {
+                    const rad = document.querySelector(`input[name="usage_type"][value="${data.usage}"]`);
+                    if(rad) {
+                        rad.checked = true;
+                        updateProsumerText(data.usage); // Restore text
+                    }
+                }
+            }
+        }
+
+        function saveAndExit() {
+            saveToLocalStorage();
+            alert("Progress saved!");
+            window.location.href = 'index.html';
+        }
+
+        function submitForm() {
+            saveToLocalStorage();
+            localStorage.setItem('polar_dashboard_status', 'ready_to_sign');
+            
+            const btn = document.getElementById('btn-next');
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Generating Bundle...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polar - Solar Transition Made Simple</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    
+    <div id="leaf-background">
+        <i class="fas fa-leaf bg-leaf bg-pos-left-1"></i>
+        <i class="fas fa-leaf bg-leaf bg-pos-left-2"></i>
+        <i class="fas fa-leaf bg-leaf bg-pos-right-1"></i>
+        <i class="fas fa-leaf bg-leaf bg-pos-right-2"></i>
+    </div>
+
+    <nav>
+        <div class="logo">
+            <i class="fas fa-solar-panel"></i> 
+            <span>Polar</span>
+        </div>
+        
+        <div class="nav-links">
+            <a href="index.html" class="active">
+                <i class="fas fa-home"></i> 
+                <span data-i18n="nav.home">Home</span>
+            </a>
+            <a href="knowledge.html">
+                <i class="fas fa-book-open"></i> 
+                <span data-i18n="nav.learn">Learn</span>
+            </a>
+            <a href="assessment.html">
+                <i class="fas fa-play-circle"></i> 
+                <span data-i18n="nav.start">Get Started</span>
+            </a>
+            <a href="dashboard.html">
+                <i class="fas fa-user-circle"></i> 
+                <span data-i18n="nav.status">My Status</span>
+            </a>
+        </div>
+
+        <div class="nav-spacer">
+            <div class="lang-switch">
+                <span class="lang-btn" data-lang="pl" onclick="setLanguage('pl')">🇵🇱 PL</span>
+                <span style="color:#555;">|</span>
+                <span class="lang-btn active" data-lang="en" onclick="setLanguage('en')">🇬🇧 EN</span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-logo-container">
+                <i class="fas fa-solar-panel hero-icon"></i>
+                <span class="hero-brand">Polar</span>
+            </div>
+
+            <h1 data-i18n="hero.title">Control powering your home. We'll guide you through it.</h1>
+            <p data-i18n="hero.subtitle">We handle the bureaucracy, grants, and installer matching so you can switch to solar energy without the headache.</p>
+            <div style="margin-top: 2rem;">
+                <a href="assessment.html" class="btn btn-primary" data-i18n="hero.btn.start">Start Assessment</a>
+                <a href="#features" class="btn btn-secondary" data-i18n="hero.btn.why">Why Solar?</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <div id="welcome-back" class="card" style="display:none; border-left: 5px solid var(--polar-cyan); margin-bottom: 2rem;">
+            <h3 data-i18n="welcome.title">Welcome back!</h3>
+            <p><span data-i18n="welcome.text">We saved your progress. You are currently at step:</span> <strong id="saved-step" style="color:var(--polar-cyan)">1</strong></p>
+            <a href="assessment.html" class="btn btn-primary card-btn" data-i18n="welcome.btn">Continue Application</a>
+        </div>
+
+        <div class="grid-2" id="features">
+            <div class="card">
+                <div class="icon-box"><i class="fas fa-file-contract"></i></div>
+                <h3 data-i18n="card.bur.title">Bureaucracy Shield</h3>
+                <p data-i18n="card.bur.text">Confused by Polish energy laws? We assist you in filling the forms and guide you through the government grant process (Mój Prąd).</p>
+                <a href="knowledge.html" class="btn btn-secondary card-btn" data-i18n="card.bur.btn">Learn More</a>
+            </div>
+
+            <div class="card">
+                <div class="icon-box"><i class="fas fa-hand-holding-dollar"></i></div>
+                <h3 data-i18n="card.grant.title">Maximize Grants</h3>
+                <p data-i18n="card.grant.text">Don't leave money on the table. Our system identifies every subsidy you are eligible for based on your location.</p>
+                
+                <p style="color: var(--polar-mint); font-weight: 700; font-size: 0.9rem; margin-top: 1rem;" data-i18n="card.grant.warn">
+                    This only works if you allow access to your location inside of your browser, which we kindly ask you to do.
+                </p>
+                <a href="knowledge.html#location-guide" class="btn btn-secondary card-btn" data-i18n="card.grant.btn">See how you can do that</a>
+            </div>
+
+            <div class="card">
+                <div class="icon-box"><i class="fas fa-chart-line"></i></div>
+                <h3 data-i18n="card.track.title">Track Progress</h3>
+                <p data-i18n="card.track.text">No more guessing. Log in to your personal dashboard to see exactly where your application stands.</p>
+                <a href="dashboard.html" class="btn btn-secondary card-btn" data-i18n="card.track.btn">Try Demo</a>
+            </div>
+
+            <div class="card">
+                <div class="icon-box"><i class="fas fa-leaf"></i></div>
+                <h3 data-i18n="card.emit.title">Reduce Emissions</h3>
+                <p data-i18n="card.emit.text">Join thousands of Polish households reducing smog. Clean air starts with your roof.</p>
+                <a href="knowledge.html" class="btn btn-secondary card-btn" data-i18n="card.emit.btn">See Animated Statistics</a>
+            </div>
+        </div>
+
+        <section class="cta-section" id="leaf-trigger">
+            <i class="fas fa-leaf cta-leaf cta-pos-left-1"></i>
+            <i class="fas fa-leaf cta-leaf cta-pos-left-2"></i>
+            <i class="fas fa-leaf cta-leaf cta-pos-right-1"></i>
+            <i class="fas fa-leaf cta-leaf cta-pos-right-2"></i>
+
+            <div class="cta-content">
+                <h2 data-i18n="cta.title">Ready to make a change?</h2>
+                <p data-i18n="cta.text">Treat yourself to solar today.</p>
+                <a href="assessment.html" class="btn btn-primary" style="margin-top: 1rem;" data-i18n="cta.btn">Start Now</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Polar. Innovation Challenge PoC.</p>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedLang = localStorage.getItem('polar_lang') || 'en';
+            if(typeof setLanguage === "function") setLanguage(savedLang);
+
+            const status = localStorage.getItem('application_status');
+            if (status && status.startsWith('in_progress_step_')) {
+                const welcomeBox = document.getElementById('welcome-back');
+                const stepText = document.getElementById('saved-step');
+                if(welcomeBox) {
+                    const stepNumber = status.split('_').pop();
+                    welcomeBox.style.display = 'block';
+                    stepText.innerText = stepNumber;
+                }
+            }
+
+            const cardSection = document.querySelector('.grid-2');
+            const body = document.body;
+            if (cardSection) {
+                new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) body.classList.add('leaves-active');
+                        else body.classList.remove('leaves-active');
+                    });
+                }, { threshold: 0.4 }).observe(cardSection);
+            }
+
+            const ctaSection = document.querySelector('.cta-section');
+            if (ctaSection) {
+                new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) ctaSection.classList.add('visible');
+                    });
+                }, { threshold: 0.3 }).observe(ctaSection);
+            }
+        });
+    </script>
+</body>
+</html>
